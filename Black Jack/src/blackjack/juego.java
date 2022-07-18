@@ -47,7 +47,8 @@ public class juego {
 		//Mano de la banca--Comparacion de banca con jugador
 		
 		System.out.println("\n-----------------------------------------------------\n		Juega la banca...\n-----------------------------------------------------");
-	
+		
+		banca.descubrir();
 		if (jugador.valorMano()>21)
 			System.out.println("\nGana la banca");
 		
@@ -55,7 +56,6 @@ public class juego {
 			do {
 				System.out.println("Pidiendo carta...");
 				banca.pedirCarta(mazo);
-				banca.descubrir();
 				System.out.println("Valor de la mano "+banca);
 			
 			}while (banca.valorMano()<=16);
