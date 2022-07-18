@@ -7,15 +7,27 @@ public class juego {
 	public static void main(String[] args) {
 		Mazo mazo=new Mazo();
 		Mano jugador=new Mano();
+		Mano banca=new Mano();
 		
 		System.out.println("Barajando cartas...");
 		mazo.barajar();
 		
 		//Mano del jugador
+		System.out.println("\n-----------------------------------------------------\n		Repartiendo cartas Iniciales...\n-----------------------------------------------------");
+		jugador.pedirCarta(mazo);
+		banca.pedirCarta(mazo);	
+		jugador.pedirCarta(mazo);
+		banca.pedirCarta(mazo,false);
+		
+		System.out.println("Jugador, tienes en tu mano \n"+jugador);
+		System.out.println("Banca, tienes en tu mano \n"+banca);
+		
+		
 		Scanner entrada=new Scanner(System.in);
 		int opcion;
 		
 		do {
+			System.out.println("\n-----------------------------------------------------\n		Jugador en proceso...\n-----------------------------------------------------");
 			System.out.println("¿Jugador, Quieres carta? (1-SI,0-NO)");
 			opcion=entrada.nextInt();		
 			if (opcion==1) {
@@ -33,8 +45,8 @@ public class juego {
 		
 		
 		//Mano de la banca--Comparacion de banca con jugador
-		Mano banca=new Mano();
-		System.out.println("Juega la banca...");
+		
+		System.out.println("\n-----------------------------------------------------\n		Juega la banca...\n-----------------------------------------------------");
 	
 		if (jugador.valorMano()>21)
 			System.out.println("\nGana la banca");
@@ -43,7 +55,9 @@ public class juego {
 			do {
 				System.out.println("Pidiendo carta...");
 				banca.pedirCarta(mazo);
+				banca.descubrir();
 				System.out.println("Valor de la mano "+banca);
+			
 			}while (banca.valorMano()<=16);
 			
 			if(jugador.valorMano()>banca.valorMano()||banca.valorMano()>21) 

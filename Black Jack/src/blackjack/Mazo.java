@@ -36,7 +36,7 @@ public class Mazo {
 		return texto;
 	}
 	
-	//solicitarCarta. Método sin parámetros que devuelve la primera carta del mazo eliminándola de la lista.
+	//solicitarCarta. Método sin parámetros que devuelve la ultima carta del mazo eliminándola de la lista.
 	public Carta solicitarCarta() {
 		Carta c=cartas.get(cartas.size()-1);
 		cartas.remove(cartas.size()-1);

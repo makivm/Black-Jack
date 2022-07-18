@@ -4,12 +4,12 @@ import java.util.ArrayList;
 
 public class Mano extends Mazo {
 
-	// • Constructor de la clase. Define una lista de caratas vacía, no invoca al
+	// • Constructor de la clase. Define una lista de cartas vacía, no invoca al
 	// método de la superclase
 	public Mano() {
-		cartas = new ArrayList<>();
-	}
-
+		this.cartas = new ArrayList<>();
+	}	
+	
 	// • Método valorMano sin parámetros. Calcula cual es valor que tenemos en la
 	// mano de cartas. Para hacerlo recorreremos la lista de cartas sumando los
 	// puntos de cada una.
@@ -17,6 +17,15 @@ public class Mano extends Mazo {
 		int total = 0;
 		for (Carta carta : cartas) {
 			total = total + carta.getValor();
+		}
+		return total;
+	}
+	
+	public int valorManoVisibles() {
+		int total = 0;
+		for (Carta carta : cartas) {
+			if (carta.isVisible())
+				total = total + carta.getValor();
 		}
 		return total;
 	}
@@ -35,7 +44,7 @@ public class Mano extends Mazo {
 	// superclase, pero antes muestre la puntuación de la mano
 	@Override
 	public String toString() {
-		return "valor de la Mano=" + valorMano() + "\n" + super.toString();
+		return "valor de la Mano=" + valorManoVisibles() + "\n" + super.toString();
 	}
 
 	// • Método pedirCarta(Mazo m) al que se le pasa un mazo de cartas,deberá
@@ -45,7 +54,19 @@ public class Mano extends Mazo {
 			Carta c=m.solicitarCarta();
 			this.cartas.add(c);
 		}
-			
 	}
-
+	public void pedirCarta(Mazo m,boolean visible) {
+		if (!finDeJuego()) {
+			Carta c=m.solicitarCarta();
+			c.setVisible(visible);
+			this.cartas.add(c);
+		}
+	}
+	
+	public void descubrir() {
+		for (Carta carta : cartas) {
+			carta.setVisible(true);
+		}
+		
+	}
 }

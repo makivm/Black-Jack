@@ -7,13 +7,21 @@ public class Carta {
 	//declaracion de atributos;
 	private Palo palo;
 	private int numero;
+	private boolean visible;
 	
 	//Constructor parametrizado al que le pases el numero y el palo, y asigne los valores. El número deberá estar entre 1 y 13.
 	public Carta(Palo palo, int numero) {
-		super();
 		this.palo = palo;
 		if (numero>=1 && numero<=13)
 				this.numero = numero;
+		this.visible=true;
+	}
+	
+	public Carta(Palo palo, int numero,boolean visible) {
+		this.palo = palo;
+		if (numero>=1 && numero<=13)
+				this.numero = numero;
+		this.visible=visible;
 	}
 
 	//Métodos getters de los atributos de las cartas. No crear lo setters
@@ -46,7 +54,16 @@ public class Carta {
 	//Sobreescribe el método toString para que muestre la carta de la siguiente manera [ numero – Palo]. Por ejemplo, [3 – CORAZONES]
 	@Override
 	public String toString() {
-		return "[" + this.mostrarNumero() + " - " + this.palo + "]";
+		if (this.visible)
+			return "[" + this.mostrarNumero() + " - " + this.palo + "]";
+		else return "[Carta no visible]" ;
 	}
-	
+
+	public boolean isVisible() {
+		return visible;
+	}
+
+	public void setVisible(boolean visible) {
+		this.visible = visible;
+	}
 }
