@@ -8,7 +8,7 @@ import blackjack.Carta.Palo;
 
 public class Mazo {
 	
-	protected List<Carta> cartas;
+	public List<Carta> cartas;
 	
 	//Constructor sin parámetros. Genera un mazo de cartas con todas las cartas. Para ello, deberemos recorrer todos los Palos y todo los posibles números y generaremos todas las cartas y las añadiremos a la lista. Para recorrer los palos puedes utilizar: for (Palo p: Palo.values())
 	public Mazo() {
